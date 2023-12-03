@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
+    <link href="./style.css" rel="stylesheet">
+    <title>Navy Battle | About</title>
+</head>
+<body class="main">
+    <div id="cursor" class="shipCursor"></div>
+    <div class="btn-group" style="float: right;">
+        <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
+                <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"></path>
+              </svg>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li><a class="dropdown-item" href="./index.html">Play the Game</a></li>
+          <li><a class="dropdown-item" href="./about.html">About this site</a></li>
+          <li><a class="dropdown-item" href="./instructions.html">Instructions</a></li>
+        </ul>
+      </div>
+
+    <h1 class="text-center">About</h1>
+    <!-- <div class="instruct">
+        <p class="text-center">Instructions: No account needed to play this 2 player game! <br>This is just like the popular game Battleship, but it's free and online.</p>
+    </div> -->
+
+<div class="container">
+    <div class="row">
+        <div>
+            <div class="card p-5 mb-5">
+                <h2>Rules for BattleShip (a Milton Bradley Game)</h2>
+
+                <h3 class="rules">Game Objective</h3>
+                <p>The object of Battleship is to try and sink all of the other player's before
+                they sink all of your ships. All of the other player's ships are somewhere on
+                his/her board.&nbsp; You try and hit them by calling out the coordinates of one
+                of the squares on the board.&nbsp; The other player also tries to hit your ships
+                by calling out coordinates.&nbsp; Neither you nor the other player can see the
+                other's board so you must try to guess where they are.&nbsp; Each board in the
+                physical game has two grids:&nbsp; the lower (horizontal) section for the
+                player's ships and the upper part (vertical during play) for recording the
+                player's guesses.</p>
+
+                <h3 class="rules">Starting a New Game</h3>
+                <p>Each player places the 5 ships somewhere on their board.&nbsp; The ships can
+                only be placed vertically or horizontally. Diagonal placement is not allowed. No
+                part of a ship may hang off the edge of the board.&nbsp; Ships may not overlap
+                each other.&nbsp; No ships may be placed on another ship.&nbsp; </p>
+                <p>Once the guessing begins, the players may not move the ships.</p>
+                <p>The 5 ships are:&nbsp; Carrier (occupies 5 spaces), Battleship (4), Cruiser
+                (3), Submarine (3), and Destroyer (2).&nbsp;&nbsp;</p>
+
+                <h3 class="rules">Playing the Game</h3>
+                <p>Player's take turns guessing by calling out the coordinates. The opponent
+                responds with &quot;hit&quot; or &quot;miss&quot; as appropriate.&nbsp; Both
+                players should mark their board with pegs:&nbsp; red for hit, white for miss.
+                For example, if you call out F6 and your opponent does not have any ship located
+                at F6, your opponent would respond with &quot;miss&quot;.&nbsp; You record the
+                miss F6 by placing a white peg on the lower part of your board at F6.&nbsp; Your
+                opponent records the miss by placing.</p>
+                <p>When all of the squares that one your ships occupies have been hit, the ship
+                will be sunk.&nbsp;&nbsp; You should announce &quot;hit and sunk&quot;.&nbsp; In
+                the physical game, a red peg is placed on the top edge of the vertical board to
+                indicate a sunk ship.&nbsp; </p>
+                <p>As soon as all of one player's ships have been sunk, the game ends.</p>
+            </div>
+        </div>
+    </div>
+</div>
+    <script src="./script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  </body>
+</html>

@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
+    <link href="./css/style.css" rel="stylesheet">
+    <title>Navy Battle</title>
+</head>
+<body class="main">
+
+    <div class="btn-group" style="float: right;">
+        <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
+                <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"></path>
+            </svg>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="./index.html">Play the Game</a></li>
+            <li><a class="dropdown-item" href="./about.html">About this site</a></li>
+            <li><a class="dropdown-item" href="./instructions.html">Instructions</a></li>
+        </ul>
+    </div>
+
+    <a class="btn btn-lg btn-light" id="ready">Ready to Start</a>
+    <a class="btn btn-lg btn-light" id="restart">Restart</a>
+    <h1>Navy Battle</h1>
+
+
+<div class="container-fluid">
+    <div style="width: 1250px; margin: auto;">
+        <div class="row">
+
+            <div class="myVessels" id="wrapper">
+                <h2 class="text-center">My Vessels</h2>
+
+                <div class="btn-div">
+                    <div class="rotate">
+                        <img src="./aircraftCarrier.svg" height="20" alt="Aircraft Carrier">
+                    </div>
+                    <div class="place">
+                        <a class="btn btn-sm btn-dark mt-2" id="aircraftCarrier" data-horizontal="true">Place Ship</a>
+                        <a class="btn btn-sm btn-secondary mt-2" id="rotateAircraftCarrier"><i class="fa-4 fa-repeat"></i></a>
+                    </div>
+                </div>
+
+                <div class="btn-div">
+                    <div class="rotate">
+                        <img src="./battleship.svg" height="20" alt="Battleship">
+                    </div>
+                    <div class="place">
+                        <a class="btn btn-sm btn-dark mt-2" id="battleship" data-horizontal="true">Place Ship</a>
+                        <a class="btn btn-sm btn-secondary mt-2" id="rotateBattleship"><i class="fa-4 fa-repeat"></i></a>
+                    </div>  
+                </div>
+
+                <div class="btn-div">
+                    <div class="rotate">
+                        <img src="./cruiser.svg" height="20" alt="Cruiser">
+                    </div>
+                    <div class="place">
+                        <a class="btn btn-sm btn-dark mt-2" id="cruiser" data-horizontal="true">Place Ship</a>
+                        <a class="btn btn-sm btn-secondary mt-2" id="rotateCruiser"><i class="fa-4 fa-repeat"></i></a>
+                    </div>
+                </div>
+
+                <div class="btn-div">
+                    <div class="rotate">
+                        <img src="./submarine.svg" height="20" alt="Submarine">
+                    </div>
+                    <div class="place">
+                        <a class="btn btn-sm btn-dark mt-2" id="submarine" data-horizontal="true">Place Ship</a>
+                        <a class="btn btn-sm btn-secondary mt-2" id="rotateSubmarine"><i class="fa-4 fa-repeat"></i></a>
+                    </div>
+                </div>
+
+                <div class="btn-div">
+                    <div class="rotate">
+                        <img src="./destroyer.svg" height="20" alt="Destroyer">
+                    </div>
+                    <div class="place">
+                        <a class="btn btn-sm btn-dark mt-2" id="destroyer" data-horizontal="true">Place Ship</a>
+                        <a class="btn btn-sm btn-secondary mt-2" id="rotateDestroyer"><i class="fa-4 fa-repeat"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="myShips">
+                <h2>My Ships</h2>
+                <div id="myCount">
+                    <div id="myNumbers">
+                        <div>1</div>
+                        <div>2</div>
+                        <div>3</div>
+                        <div>4</div>
+                        <div>5</div>
+                        <div>6</div>
+                        <div>7</div>
+                        <div>8</div>
+                        <div>9</div>
+                        <div>10</div>
+                    </div>
+                </div>
+                <div id="myShips">
+                    <div id="myRowA">
+                        <p class="letter">A</p>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                    </div>
+                    <div id="myRowB">
+                        <p class="letter">B</p>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                    </div>
+                    <div id="myRowC">
+                        <p class="letter">C</p>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                    </div>
+                    <div id="myRowD">
+                        <p class="letter">D</p>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                    </div>
+                    <div id="myRowE">
+                        <p class="letter">E</p>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                    </div>
+                    <div id="myRowF">
+                        <p class="letter">F</p>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                    </div>
+                    <div id="myRowG">
+                        <p class="letter">G</p>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                    </div>
+                    <div id="myRowH">
+                        <p class="letter">H</p>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                    </div>
+                    <div id="myRowI">
+                        <p class="letter">I</p>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                    </div>
+                    <div id="myRowJ">
+                        <p class="letter">J</p>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                    </div>
+                </div>
+                <h4>Epic Music</h4>
+                <audio controls>
+                    <source src="./music/war-crown.mp3" type="audio/mpeg">
+                  Your browser does not support the audio element.
+                  </audio>
+            </div>
+
+            <div class="yourShips">
+                <h2>Your Ships</h2>
+                <div id="yourCount">
+                    <div id="yourNumbers">
+                        <div>1</div>
+                        <div>2</div>
+                        <div>3</div>
+                        <div>4</div>
+                        <div>5</div>
+                        <div>6</div>
+                        <div>7</div>
+                        <div>8</div>
+                        <div>9</div>
+                        <div>10</div>
+                    </div>
+                </div>
+                <div id="yourShips">
+                    <div id="yourRowA">
+                        <p class="letter">A</p>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                    <div id="yourRowB">
+                        <p class="letter">B</p>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                    <div id="yourRowC">
+                        <p class="letter">C</p>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                    <div id="yourRowD">
+                        <p class="letter">D</p>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                    <div id="yourRowE">
+                        <p class="letter">E</p>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                    <div id="yourRowF">
+                        <p class="letter">F</p>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                    <div id="yourRowG">
+                        <p class="letter">G</p>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                    <div id="yourRowH">
+                        <p class="letter">H</p>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                    <div id="yourRowI">
+                        <p class="letter">I</p>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                    <div id="yourRowJ">
+                        <p class="letter">J</p>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+                <h4>Wins: <span id="output"></span></h4>
+                    <div class="score-div">
+                        <input type="range" min="0" max="5" value="0" class="slider" id="slider">
+                    </div>
+            </div>
+
+            <div class="yourVessels">
+                <h2 class="text-center">Your Vessels</h2>
+                <div class="sink-div">
+                    <div class="sink-svg">
+                        <img src="./your-ships/yourAircraftCarrier.svg" height="20" alt="Your Aircraft Carrier">
+                    </div>
+                    <div class="sink">
+                        <a class="btn btn-secondary btn-sm mt-2" id="sinkAircraftCarrier" data-horizontal="false">Sunk</a>
+                    </div>
+                </div>
+
+                <div class="sink-div">
+                    <div class="sink-svg">
+                        <img src="./your-ships/yourBattleship.svg" height="20" alt="Your Battleship">
+                    </div>
+                    <div class="sink">
+                        <a class="btn btn-secondary btn-sm mt-2" id="sinkBattleship" data-horizontal="false">Sunk</a>
+                    </div>
+                </div>
+
+                <div class="sink-div">
+                    <div class="sink-svg">
+                        <img src="./your-ships/yourCruiser.svg" height="20" alt="Your Cruiser">
+                    </div>
+                    <div class="sink">
+                        <a class="btn btn-secondary btn-sm mt-2" id="sinkCruiser" data-horizontal="false">Sunk</a>
+                    </div>
+                </div>
+
+                <div class="sink-div">
+                    <div class="sink-svg">
+                        <img src="./your-ships/yourSubmarine.svg" height="20" alt="Your Submarine">
+                    </div>
+                    <div class="sink">
+                        <a class="btn btn-secondary btn-sm mt-2" id="sinkSubmarine" data-horizontal="false">Sunk</a>
+                    </div>
+                </div>
+
+                <div class="sink-div">
+                    <div class="sink-svg">
+                        <img src="./your-ships/yourDestroyer.svg" height="20" alt="Your Destroyer">
+                    </div>
+                    <div class="sink">
+                        <a class="btn btn-secondary btn-sm mt-2" id="sinkDestroyer" data-horizontal="false">Sunk</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <script src="./js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  </body>
+</html>
