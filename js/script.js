@@ -1,29 +1,38 @@
-//-------------__FFF_----------------------------------------------
-//   MY SHIPS  \____/
+//   MY SHIPS 
 //-----------------------------------------------------------------
 
+// My Ships (Class)
 
-// My Ships (Template/Class)
 class Ship {
     constructor(boxWidth, name) {
         this.name = name;
         this.boxWidth = boxWidth;
         this.imgFull = name + ".svg";
-        this.horizontal = true;
-        function slice() {
-            const imgSliceArray = [];
+        function sliceHoriz() {
+            const imgSliceArrayH = [];
             for (let i = 0; i < boxWidth; i++) {
                 const slice = "url('" + name + ".svg') -" + (i * 30) + "px 0px no-repeat";
-                imgSliceArray.push(slice);
+                imgSliceArrayH.push(slice);
             };
-            return imgSliceArray;
+            return imgSliceArrayH;
         }
-        this.imgSliceArray = slice();
+        this.imgSliceArrayHoriz = sliceHoriz();
+        function sliceVert() {
+            const imgSliceArrayV = [];
+            for (let i = 0; i < boxWidth; i++) {
+                const slice = "url('./vertical/" + name + "Vertical.svg') 0px -" + (i * 30) + "px no-repeat";
+                imgSliceArrayV.push(slice);
+            };
+            return imgSliceArrayV;
+        }
+        this.imgSliceArrayVert = sliceVert();
+        this.once = 1;
     }
 }
 
 
 // My Ships (Created Objects)
+
 const aircraftCarrier = new Ship(6, "aircraftCarrier");
 const battleship = new Ship(5, "battleship");
 const cruiser = new Ship(3, "cruiser");
@@ -32,22 +41,25 @@ const destroyer = new Ship(2, "destroyer");
 
 
 // My Ships: Grid From 100 HTML Divs
-const myGrid = document.querySelectorAll("#myShips div div");//For HTML Attributes
-const myShipId = document.getElementById("myShips");//For event listeners
+
+const myGrid = document.querySelectorAll("#myShips div div"); // For HTML Attributes
+const myShipId = document.getElementById("myShips"); // For event listeners
 
 
-// My Ships: Each box as an object (Template/Class)
+// My Ships: Each box as an object (Class)
+
 class Box {
-    constructor(index, occupied, backgroundImage) {
+    constructor(index, occupied) {
         this.index = index;
         this.rowIndex = +String(this.index).padStart(2, '0').slice(0, 1);
         this.columnIndex = +String(this.index).slice(-1);
-        this.occupied = false,
-        this.backgroundImage = "explosion.png"
+        this.occupied = occupied
     }
 }
 
+
 // My Ships: Set each box as an object and add HTML attrbutes (Created Objects)
+
 function setGrid(){
     const myBoxArray = [];
     let newBox;
@@ -58,129 +70,60 @@ function setGrid(){
         myGrid[i].setAttribute("data-rowindex", newBox.rowIndex);
         myGrid[i].setAttribute("data-columnindex", newBox.columnIndex);
         myGrid[i].setAttribute("data-occupied", newBox.occupied);
-        myGrid[i].setAttribute("data-backgroundindex", newBox.backgroundIndex);
-        myBoxArray.push(newBox);//This might not be needed
+        myBoxArray.push(newBox);
         i++;
     });
 }
 setGrid();
 
 
-// My Ships: HORIZONTAL Drag and Drop Highlight Event Listeners (Function)
-    function horizontalHighlightListener(eventType, shipLength, highlightColor) {
-        myShipId.addEventListener(eventType, function (event) {
-            if(event.target.classList.contains('box')) {
-                const getIndex = +event.target.dataset.index;            // First index value
-                const firstRowIndex = myGrid[getIndex].dataset.rowindex; // First row index
-                const lastBox = getIndex + shipLength;
-                const rowNineShip = shipLength-1;
-                const rowNineArray = [90,91,92,93,94,95,96,97,98,99];
-                const rowNineLast = rowNineArray.slice(0, -rowNineShip);
+// 1. Cursor Event Listener
 
-                function resetEventBkg() {
-                    for (let i = 0; i <= 99; i++) {
-                        myGrid[i].style.backgroundColor = "";
-                    }
-                }
-
-                function highlightBoxRange() {    
-                    resetEventBkg();                    
-                    for (let i = getIndex; i < lastBox; i++) {
-                        myGrid[i].style.backgroundColor = highlightColor;
-                    }
-                }
-             
-                function defaultCursor() {
-                    myGrid[getIndex].style.cursor = "";
-                }
-
-                function noCursor() {
-                    myGrid[getIndex].style.cursor = "not-allowed";
-                    resetEventBkg();
-                }
-
-                switch (firstRowIndex == 9) { // Last row caused errors before
-                    case (getIndex > rowNineLast[rowNineLast.length-1]):
-                        noCursor();
-                    break;
-                    case (getIndex <= rowNineLast[rowNineLast.length-1]):
-                        highlightBoxRange();
-                        defaultCursor();
-                    break;
-                    }
-                
-                if (firstRowIndex != 9){       //Rows 1 - 8
-                let lastRowIndex = myGrid[lastBox - 1].dataset.rowindex;
-                    if (firstRowIndex != lastRowIndex){
-                        noCursor();
-                    }
-                    else if (firstRowIndex == lastRowIndex){
-                        highlightBoxRange();
-                        defaultCursor();
-                    }
-                }
-            }
-        });
-    }
-
-
-// My Ships: VERTICAL Drag and Drop Highlight Event Listeners (Function)
-function verticalHighlightListener(eventType, shipLength, highlightColor) {
-    myShipId.addEventListener(eventType, function (event) {
-        if(event.target.classList.contains('box')) {
-            const getIndex = +event.target.dataset.index;
-            const shipLengthTen = (shipLength - 1) * 10;
-            const lastBox = getIndex + shipLengthTen;
-
-            function resetEventBkg() {
-                for (let i = 0; i <= 99; i++) {
-                    myGrid[i].style.backgroundColor = "";
-                }
-            }
-
-            function highlightBoxRange() {    
-                resetEventBkg();                    
-                for (let i = getIndex; i <= lastBox; i+=10) {
-                    myGrid[i].style.backgroundColor = highlightColor;
-                }
-            }
-
-            function noCursor() {
-                myGrid[getIndex].style.cursor = "not-allowed";
-                resetEventBkg();
-            }
-        
-            function defaultCursor() {
-                myGrid[getIndex].style.cursor = "";
-            }
-                if (getIndex > (99 - shipLengthTen)){
-                    noCursor();
-                }
-                else {
-                   highlightBoxRange();
-                   defaultCursor();
-                }
-            }
-    });
-}
-
-
-// Cursor Event Listener (Set Function)
 let button = "";
-function buttonListener(btn){
+function buttonListener(btn, svg){
     document.getElementById(btn).addEventListener("click", function(event) {
     const shipCursor = document.querySelector("body");
-    shipCursor.style.cursor = "url("+ btn +".svg), auto";
+    shipCursor.style.cursor = "url("+ svg +".svg), auto";
     button = btn;
+    boolButtonListener(btn);
     callHighlighters();
     bodyClickNoCursor(btn);
 })}
-buttonListener("aircraftCarrier");
-buttonListener("battleship");
-buttonListener("cruiser");
-buttonListener("submarine");
-buttonListener("destroyer");
 
+buttonListener("aircraftCarrier", "aircraftCarrier");
+buttonListener("battleship", "battleship");
+buttonListener("cruiser", "cruiser");
+buttonListener("submarine" , "submarine");
+buttonListener("destroyer", "destroyer");
+buttonListener("rotateAircraftCarrier", "aircraftCarrier");
+buttonListener("rotateBattleship", "battleship");
+buttonListener("rotateCruiser", "cruiser");
+buttonListener("rotateSubmarine" , "submarine");
+buttonListener("rotateDestroyer", "destroyer");
+
+
+// 2. Set Horizontal Attribute to true or false
+
+let rotateButton = "";
+function boolButtonListener(btn){
+
+    const element = document.getElementById(btn);
+    const parent = element.parentElement.parentElement;
+    const placeElement = parent.getElementsByClassName("place");
+    const placeButton = placeElement[0].getElementsByClassName("btn-dark");
+    //console.log(element.innerHTML);
+    if  (element.innerHTML == "Vertical"){
+        placeButton[0].dataset.horizontal = "false";  
+    }
+    else if (element.innerHTML == "Horizontal") {
+        placeButton[0].dataset.horizontal = "true";  
+    }
+    //console.log(placeButton[0].dataset.horizontal);
+
+}
+
+
+// 2. Specify Highligters
 
 function callHighlighters(){
     switch (button)
@@ -200,87 +143,162 @@ function callHighlighters(){
     case "destroyer":
         placeShip(destroyer, 2);
         break;
+    case "rotateAircraftCarrier":
+        placeShip(aircraftCarrier, 6);
+        break;
+    case "rotateBattleship":
+        placeShip(battleship, 5);
+        break;
+    case "rotateCruiser":
+        placeShip(cruiser, 3);
+        break;
+    case "rotateSubmarine":
+        placeShip(submarine, 3);
+        break;
+    case "rotateDestroyer":
+        placeShip(destroyer, 2);
+        break;
     }
 }
 
 
-// Drop Image in Squares
-function dropImageHorizontal(shipObject, shipLength){
-    myShipId.addEventListener("click", function(event) {
-        if (event.target.classList.contains('box')) {
-            let getIndex = +event.target.dataset.index;
-            const lastB = +getIndex + shipLength;
-            const firstRowIndex = myGrid[getIndex].dataset.rowindex;
-            const lastRowIndex = myGrid[lastB - 1].dataset.rowindex;
-            if (firstRowIndex == lastRowIndex) {
-                let arrayStart = 0;
-                let i = +getIndex;
-                do{
-                    myGrid[i].classList.add(shipObject.name);
-                    myGrid[i].style.background = shipObject.imgSliceArray[arrayStart];
-                    arrayStart = arrayStart +1;
-                    i++;
-                    }
-                while (arrayStart < shipLength);
-                shipObject.imgSliceArray = [];
-                shipObject.name = ["empty"];
+// 3. Event Listener on Place Ship Buttons
+
+function placeShip(shipObject, shipL) {
+        const placeButtonHorizontal = document.getElementById(shipObject.name).dataset.horizontal;
+        const oneTime = shipObject.once;
+        switch (oneTime)
+        {
+            case 0:
+                alert("This ship is already placed. Press the Reset button if you need to place your ships again.");
+                
+        }
+        if (placeButtonHorizontal == "true"){
+            horizontalHighlightListener("mouseover", shipL, "#4c7bad");
+            horizontalHighlightListener("mouseout", shipL, "");
+            dropImageHorizontal(shipObject, shipL);    
+        }
+        else if (placeButtonHorizontal == "false"){
+            verticalHighlightListener("mouseover", shipL, "#4c7bad");
+            verticalHighlightListener("mouseout", shipL, ""); 
+            dropImageVertical(shipObject, shipL);       
+        }  
+}
+
+
+// 4. HORIZONTAL Drag and Drop Highlight Event Listeners
+
+function horizontalHighlightListener(eventType, shipLength, highlightColor) {
+    myShipId.addEventListener(eventType, function (event) {
+        if(event.target.classList.contains('box')) {
+
+            const getIndex = +event.target.dataset.index;            // First index value
+            
+            const firstRowIndex = myGrid[getIndex].dataset.rowindex; // First row index
+            
+            const lastBox = getIndex + shipLength;
+            
+            const rowNineShip = shipLength-1;
+            
+            const rowNineArray = [90,91,92,93,94,95,96,97,98,99];
+           
+            const rowNineLast = rowNineArray.slice(0, -rowNineShip);
+
+            function resetEventBkg() {
+                for (let i = 0; i <= 99; i++) {
+                    myGrid[i].style.backgroundColor = "";
+                }
+            }
+
+            function highlightBoxRange() {    
+                resetEventBkg();                    
+                for (let i = getIndex; i < lastBox; i++) {
+                    myGrid[i].style.backgroundColor = highlightColor;
+                }
+            }
+         
+            function defaultCursor() {
+                myGrid[getIndex].style.cursor = "";
+            }
+
+            function noCursor() {
+                myGrid[getIndex].style.cursor = "not-allowed";
+                resetEventBkg();
+            }
+
+            switch (firstRowIndex == 9) { // Last row caused errors before
+                case (getIndex > rowNineLast[rowNineLast.length-1]):
+                    noCursor();
+                break;
+                case (getIndex <= rowNineLast[rowNineLast.length-1]):
+                    highlightBoxRange();
+                    defaultCursor();
+                break;
+                }
+            
+            if (firstRowIndex != 9){ //Rows 1 - 8
+            let lastRowIndex = myGrid[lastBox - 1].dataset.rowindex;
+                if (firstRowIndex != lastRowIndex){
+                    noCursor();
+                }
+                else if (firstRowIndex == lastRowIndex){
+                    highlightBoxRange();
+                    defaultCursor();
+                }
             }
         }
     });
 }
 
 
-// Event Listener on Place Ship Button (Function)
-function placeShip(shipObject, shipL) {
-    try {
-        const placeButtonHorizontal = document.getElementById(shipObject.name).dataset.horizontal;
-        const shipCursor = document.querySelector("body");
-        shipCursor.style.cursor = "url(./"+ shipObject.name +".svg), auto";
-        if (placeButtonHorizontal == "true"){
-            horizontalHighlightListener("mouseover", shipL, "#4c7bad");
-            horizontalHighlightListener("mouseout", shipL, "");
-            dropImageHorizontal(shipObject, shipL);       
+// 4. VERTICAL Drag and Drop Highlight Event Listeners 
+
+function verticalHighlightListener(eventType, shipLength, highlightColor) {
+myShipId.addEventListener(eventType, function (event) {
+    if(event.target.classList.contains('box')) {
+
+        const getIndex = +event.target.dataset.index;
+
+        const shipLengthTen = (shipLength - 1) * 10;
+
+        const lastBox = getIndex + shipLengthTen;
+
+        function resetEventBkg() {
+            for (let i = 0; i <= 99; i++) {
+                myGrid[i].style.backgroundColor = "";
+            }
         }
-        else if (placeButtonHorizontal == "false"){
-            verticalHighlightListener("mouseover", shipL, "#4c7bad");
-            verticalHighlightListener("mouseout", shipL, "");       
+
+        function highlightBoxRange() {    
+            resetEventBkg();                    
+            for (let i = getIndex; i <= lastBox; i+=10) {
+                myGrid[i].style.backgroundColor = highlightColor;
+            }
         }
-    }
-    catch {
-        alert("This ship is already placed.")
-    }
+
+        function noCursor() {
+            myGrid[getIndex].style.cursor = "not-allowed";
+            resetEventBkg();
+        }
+    
+        function defaultCursor() {
+            myGrid[getIndex].style.cursor = "";
+        }
+            if (getIndex > (99 - shipLengthTen)){
+                noCursor();
+            }
+            else {
+               highlightBoxRange();
+               defaultCursor();
+            }
+        }
+});
 }
 
 
-// Change Button layout if Rotated & Set Horizontal Attribute
-let rotateButton = "";
-function rotateButtonListener(btn){
-    document.getElementById(btn).addEventListener("click", function() {
-        const rotateElement = document.getElementById(btn);
-        const parent = rotateElement.parentElement.parentElement;
-        const placeElement = parent.getElementsByClassName("place");
-        const placeButton = placeElement[0].getElementsByClassName("btn-dark");
-        const contains = parent.classList.contains("btn-left");
-        if  (contains == false){
-            parent.classList.add("btn-left");
-            placeButton[0].setAttribute("data-horizontal", "false");   
-            callHighlighters();
-        }
-        else if (contains == true) {
-            parent.classList.remove("btn-left");
-            placeButton[0].setAttribute("data-horizontal", "true");  
-            callHighlighters();
-        }
-})}
-rotateButtonListener("rotateAircraftCarrier");
-rotateButtonListener("rotateBattleship");
-rotateButtonListener("rotateCruiser");
-rotateButtonListener("rotateSubmarine");
-rotateButtonListener("rotateDestroyer");
+// 5. Remove Special Cursors when Clicking Outside the Grid
 
-
-// Remove Special Cursors when Clicking Outside the Grid
-function bodyClickNoCursor (btn) {
+function bodyClickNoCursor () {
     document.body.addEventListener("click", function (event) {
         if (event.target.classList.contains('btn') == true ||
             event.target.classList.contains('fa-4') == true){
@@ -297,7 +315,63 @@ function bodyClickNoCursor (btn) {
 }
 
 
-// Reset the Game
+// 6. Horizontal Drop Image in Squares
+
+function dropImageHorizontal(shipObject, shipLength){
+    myShipId.addEventListener("click", function(event) {
+        if (event.target.classList.contains('box')) {
+            let getIndex = +event.target.dataset.index;
+            const lastB = +getIndex + shipLength;
+            const firstRowIndex = myGrid[getIndex].dataset.rowindex;
+            const lastRowIndex = myGrid[lastB - 1].dataset.rowindex;
+            const newArr = document.querySelectorAll("#myShips div div"); //Identity function
+            console.log(newArr);
+            if (firstRowIndex == lastRowIndex) {
+                let arrayStart = 0;
+                let i = +getIndex;
+                do{
+                    //console.log(myGrid[i].getAttribute("class"));
+                    newArr[i].setAttribute("class", "box " + shipObject.name);
+                    newArr[i].style.background = shipObject.imgSliceArrayHoriz[arrayStart];
+                    arrayStart = arrayStart +1;
+                    i++;
+                    }
+                while (arrayStart <= shipLength - 1);
+                //console.log(shipObject.imgSliceArrayHoriz);
+                shipObject.imgSliceArrayVert = [];
+                shipObject.imgSliceArrayHoriz = [];
+                //localStorage.clear();
+                shipObject.once = 0;
+            }
+        }
+    });
+}
+
+
+// 6. Vertical Drop Image in Squares
+function dropImageVertical(shipObject, shipLength){
+    myShipId.addEventListener("click", function(event) {
+        if (event.target.classList.contains('box')) {
+            let getIndex = +event.target.dataset.index;
+            let arrayStart = 0;
+            let i = +getIndex;
+            const newArr = document.querySelectorAll("#myShips div div");
+                do{
+                    newArr[i].setAttribute("class", "box vertical");
+                    newArr[i].style.background = shipObject.imgSliceArrayVert[arrayStart];
+                    arrayStart = arrayStart + 1;
+                    i = i+10;
+                    }
+                while (arrayStart <= shipLength - 1);
+                shipObject.imgSliceArrayVert = [];
+                shipObject.imgSliceArrayHoriz = [];
+                shipObject.once = 0;
+        }
+    });
+}
+
+
+// 7. Reset the Game
 
 function resetMyShipGrid(btnId){
     document.getElementById(btnId).addEventListener("click", function(event) {
@@ -307,8 +381,8 @@ function resetMyShipGrid(btnId){
 resetMyShipGrid("restart");
 
 
-//----------------__FFF_-------------------------------------------
-//   YOUR SHIPS   \____/
+
+//   YOUR SHIPS 
 //-----------------------------------------------------------------
 
 
@@ -372,4 +446,3 @@ output.innerHTML = "0";
 slider.oninput = function() {
   output.innerHTML = this.value;
 }
-

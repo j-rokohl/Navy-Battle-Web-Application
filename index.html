@@ -12,6 +12,24 @@
 </head>
 <body class="main">
 
+        <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">This ship is already placed.</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  Press the Reset button if you need to place your ships again.
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
     <div class="btn-group" style="float: right;">
         <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
@@ -40,31 +58,12 @@
 
                 <div class="btn-div">
                     <div class="rotate">
-                        <img src="./aircraftCarrier.svg" height="20" alt="Aircraft Carrier">
+                        <img src="./destroyer.svg" height="20" alt="Destroyer">
                     </div>
                     <div class="place">
-                        <a class="btn btn-sm btn-dark mt-2" id="aircraftCarrier" data-horizontal="true">Place Ship</a>
-                        <a class="btn btn-sm btn-secondary mt-2" id="rotateAircraftCarrier"><i class="fa-4 fa-repeat"></i></a>
-                    </div>
-                </div>
-
-                <div class="btn-div">
-                    <div class="rotate">
-                        <img src="./battleship.svg" height="20" alt="Battleship">
-                    </div>
-                    <div class="place">
-                        <a class="btn btn-sm btn-dark mt-2" id="battleship" data-horizontal="true">Place Ship</a>
-                        <a class="btn btn-sm btn-secondary mt-2" id="rotateBattleship"><i class="fa-4 fa-repeat"></i></a>
-                    </div>  
-                </div>
-
-                <div class="btn-div">
-                    <div class="rotate">
-                        <img src="./cruiser.svg" height="20" alt="Cruiser">
-                    </div>
-                    <div class="place">
-                        <a class="btn btn-sm btn-dark mt-2" id="cruiser" data-horizontal="true">Place Ship</a>
-                        <a class="btn btn-sm btn-secondary mt-2" id="rotateCruiser"><i class="fa-4 fa-repeat"></i></a>
+                        <a class="btn btn-sm btn-dark mt-2" id="destroyer" data-horizontal="true">Horizontal</a>
+                        <a class="btn btn-sm btn-secondary mt-2" id="rotateDestroyer">Vertical</a>
+                        <a class="btn btn-sm btn-secondary mt-2"><i class="fa-4 fa-repeat"></i></a>
                     </div>
                 </div>
 
@@ -73,20 +72,45 @@
                         <img src="./submarine.svg" height="20" alt="Submarine">
                     </div>
                     <div class="place">
-                        <a class="btn btn-sm btn-dark mt-2" id="submarine" data-horizontal="true">Place Ship</a>
-                        <a class="btn btn-sm btn-secondary mt-2" id="rotateSubmarine"><i class="fa-4 fa-repeat"></i></a>
+                        <a class="btn btn-sm btn-dark mt-2" id="submarine" data-horizontal="true">Horizontal</a>
+                        <a class="btn btn-sm btn-secondary mt-2" id="rotateSubmarine">Vertical</i></a>
+                        <a class="btn btn-sm btn-secondary mt-2"><i class="fa-4 fa-repeat"></i></a>
                     </div>
                 </div>
 
                 <div class="btn-div">
                     <div class="rotate">
-                        <img src="./destroyer.svg" height="20" alt="Destroyer">
+                        <img src="./cruiser.svg" height="20" alt="Cruiser">
                     </div>
                     <div class="place">
-                        <a class="btn btn-sm btn-dark mt-2" id="destroyer" data-horizontal="true">Place Ship</a>
-                        <a class="btn btn-sm btn-secondary mt-2" id="rotateDestroyer"><i class="fa-4 fa-repeat"></i></a>
+                        <a class="btn btn-sm btn-dark mt-2" id="cruiser" data-horizontal="true">Horizontal</a>
+                        <a class="btn btn-sm btn-secondary mt-2" id="rotateCruiser">Vertical</a>
+                        <a class="btn btn-sm btn-secondary mt-2"><i class="fa-4 fa-repeat"></i></a>
                     </div>
                 </div>
+
+                <div class="btn-div">
+                    <div class="rotate">
+                        <img src="./battleship.svg" height="20" alt="Battleship">
+                    </div>
+                    <div class="place">
+                        <a class="btn btn-sm btn-dark mt-2" id="battleship" data-horizontal="true">Horizontal</a>
+                        <a class="btn btn-sm btn-secondary mt-2" id="rotateBattleship">Vertical</a>
+                        <a class="btn btn-sm btn-secondary mt-2"><i class="fa-4 fa-repeat"></i></a>
+                    </div>  
+                </div>
+
+                <div class="btn-div">
+                    <div class="rotate">
+                        <img src="./aircraftCarrier.svg" height="20" alt="Aircraft Carrier">
+                    </div>
+                    <div class="place">
+                        <a class="btn btn-sm btn-dark mt-2" id="aircraftCarrier" data-horizontal="true">Horizontal</a>
+                        <a class="btn btn-sm btn-secondary mt-2" id="rotateAircraftCarrier">Vertical</a>
+                        <a class="btn btn-sm btn-secondary mt-2"><i class="fa-4 fa-repeat"></i></a>
+                    </div>
+                </div>
+
             </div>
 
             <div class="myShips">
