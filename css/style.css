@@ -91,11 +91,13 @@
             float: left; 
             margin: 10px;
             font-weight: 900;
+            font-size: .85em;
         }
         #restart {
             float: left; 
-            margin: 10px 100px 10px 0;
+            margin: 10px 170px 10px 0;
             font-weight: 900;
+            font-size: .85em;
         }
 
 
@@ -164,7 +166,7 @@
         .box {
             height: 30px;
         }
-        .aircraftCarrier {
+        /* .aircraftCarrier {
             background-size: 600% !important;
         }
         .battleship {
@@ -178,6 +180,9 @@
         }
         .destroyer {
             background-size: 200% !important;
+        } */
+        .horizontal {
+            background-size: auto 100% !important;
         }
         .vertical {
             background-size: 100% !important;
