@@ -315,7 +315,7 @@ function bodyClickNoCursor () {
 }
 
 
-// 6. Horizontal Drop Image in Squares
+// 6. Horizontal Drop Image in Squares (Add Event Listener)
 
 function dropImageHorizontal(shipObject, shipLength){
     myShipId.addEventListener("click", function(event) {
@@ -325,31 +325,13 @@ function dropImageHorizontal(shipObject, shipLength){
             const firstRowIndex = myGrid[getIndex].dataset.rowindex;
             const lastRowIndex = myGrid[lastB - 1].dataset.rowindex;
             const shipLast = shipLength - 1;
-
-            if (firstRowIndex == lastRowIndex) {
-                const newArr = document.querySelectorAll("#myShips div div"); //Identity function
-                
-                // Iterators:
-                // let arrayStart = 0;
-                // let i = +getIndex;
-                // console.log(shipLast);
-
-                // Read what is already there:
-                // const readArr= [];
-                // do{ 
-                //     const read= newArr[i].getAttribute("class");
-                //     readArr.push(read);
-                //     arrayStart++;
-                //     i++;
-                //     }
-                // while (arrayStart <= shipLast);
-                // console.log("Read Array:  " + readArr);
-
-                // Iterators:
+            if (shipObject.once == 0){
+                // Exit
+            }
+            else if (firstRowIndex == lastRowIndex) {
+                const newArr = document.querySelectorAll("#myShips div div"); // Identity function
                 let arrayStart2 = 0;
                 let i2 = +getIndex;
-
-                // Edit Nodelist:
                 let testArr = [];
                 do{
                     let ship = String(shipObject.name);
@@ -360,12 +342,6 @@ function dropImageHorizontal(shipObject, shipLength){
                     i2++;
                     }
                 while (arrayStart2 <= shipLast);
-                // shipObject.imgSliceArrayVert = [];
-                // shipObject.imgSliceArrayHoriz = [];
-
-                // shipObject.imgSliceArrayVert = [];
-                // shipObject.imgSliceArrayHoriz = [];
-                // testArr = [];
                 shipObject.once = 0;
             }
         }
@@ -373,41 +349,26 @@ function dropImageHorizontal(shipObject, shipLength){
 }
 
 
-// 6. Vertical Drop Image in Squares
+// 6. Vertical Drop Image in Squares (Add Event Listener)
+
 function dropImageVertical(shipObject, shipLength){
     myShipId.addEventListener("click", function(event) {
-        if (event.target.classList.contains('box')) {
+        if (shipObject.once == 0){
+            // Exit
+        }
+        else if (event.target.classList.contains('box')) {
             let getIndex = +event.target.dataset.index;
             let arrayStart = 0;
             let i = +getIndex;
             const newArr = document.querySelectorAll("#myShips div div");
-
-            // let arrayStart2 = 0;
-            // let i2 = +getIndex;
-
-            // console.log(shipLength - 1);
-
-                // TEST: Read what is already there:
-                // const readArr= [];
-                // do{ 
-                //     const read= newArr[i2].getAttribute("class");
-                //     readArr.push(read);
-                //     arrayStart2++;
-                //     i2= i2+10;
-                //     }
-                // while (arrayStart2 <= shipLength - 1);
-                // console.log("Read Array:  " + readArr);
-
-                do{
-                    newArr[i].setAttribute("class", "box vertical");
-                    newArr[i].style.background = shipObject.imgSliceArrayVert[arrayStart];
-                    arrayStart = arrayStart + 1;
-                    i = i+10;
-                    }
-                while (arrayStart <= shipLength - 1);
-                // shipObject.imgSliceArrayVert = [];
-                // shipObject.imgSliceArrayHoriz = [];
-                shipObject.once = 0;
+            do{
+                newArr[i].setAttribute("class", "box vertical");
+                newArr[i].style.background = shipObject.imgSliceArrayVert[arrayStart];
+                arrayStart = arrayStart + 1;
+                i = i+10;
+                }
+            while (arrayStart <= shipLength - 1);
+            shipObject.once = 0;
         }
     }, { once: true });
 }
