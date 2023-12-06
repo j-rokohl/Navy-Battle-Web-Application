@@ -69,6 +69,7 @@ function setGrid(){
         myGrid[i].setAttribute("data-index", newBox.index);
         myGrid[i].setAttribute("data-rowindex", newBox.rowIndex);
         myGrid[i].setAttribute("data-columnindex", newBox.columnIndex);
+        myGrid[i].setAttribute("data-ship", "none");
         myGrid[i].setAttribute("data-occupied", newBox.occupied);
         myBoxArray.push(newBox);
         i++;
@@ -331,15 +332,16 @@ function dropImageHorizontal(shipObject, shipLength){
             else if (firstRowIndex == lastRowIndex) {
                 const newArr = document.querySelectorAll("#myShips div div"); // Identity function
                 let arrayStart2 = 0;
-                let i2 = +getIndex;
+                let i = +getIndex;
                 let testArr = [];
                 do{
-                    let ship = String(shipObject.name);
-                    testArr.push(ship);
-                    newArr[i2].setAttribute("class", "box horizontal");
-                    newArr[i2].style.background = shipObject.imgSliceArrayHoriz[arrayStart2];
+                    let shipString = String(shipObject.name);
+                    testArr.push(shipString);
+                    newArr[i].setAttribute("class", "box horizontal");
+                    newArr[i].dataset.ship = shipString;
+                    newArr[i].style.background = shipObject.imgSliceArrayHoriz[arrayStart2];
                     arrayStart2 = arrayStart2 +1;
-                    i2++;
+                    i++;
                     }
                 while (arrayStart2 <= shipLast);
                 shipObject.once = 0;
@@ -357,12 +359,14 @@ function dropImageVertical(shipObject, shipLength){
             // Exit
         }
         else if (event.target.classList.contains('box')) {
+            let shipString = String(shipObject.name);
             let getIndex = +event.target.dataset.index;
             let arrayStart = 0;
             let i = +getIndex;
             const newArr = document.querySelectorAll("#myShips div div");
             do{
                 newArr[i].setAttribute("class", "box vertical");
+                newArr[i].dataset.ship = shipString;
                 newArr[i].style.background = shipObject.imgSliceArrayVert[arrayStart];
                 arrayStart = arrayStart + 1;
                 i = i+10;
@@ -373,8 +377,31 @@ function dropImageVertical(shipObject, shipLength){
     }, { once: true });
 }
 
+// 7. Erase an Individual Ship 
 
-// 7. Reset the Game
+function eraseShip(shipObject, buttonName){
+    document.getElementById(buttonName).addEventListener("click", function(event) {
+        const newArr = document.querySelectorAll("#myShips div div");
+        const shipString = String(shipObject.name);
+        for (let i = 0; i <100; i++){
+            if (newArr[i].dataset.ship == shipString) {
+                newArr[i].setAttribute("class", "box");
+                newArr[i].dataset.ship = "none";
+                newArr[i].style.background = "";
+            }
+        }
+        shipObject.once = 1;
+    });
+}
+eraseShip(aircraftCarrier, "eraseAircraftCarrier");
+eraseShip(battleship, "eraseBattleship");
+eraseShip(cruiser, "eraseCruiser");
+eraseShip(submarine , "eraseSubmarine");
+eraseShip(destroyer, "eraseDestroyer");
+
+
+
+// 8. Reset the Game
 
 function resetMyShipGrid(btnId){
     document.getElementById(btnId).addEventListener("click", function(event) {

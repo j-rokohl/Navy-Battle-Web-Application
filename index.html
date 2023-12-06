@@ -63,7 +63,7 @@
                     <div class="place">
                         <a class="btn btn-sm btn-dark mt-2" id="aircraftCarrier" data-horizontal="true">Horizontal</a>
                         <a class="btn btn-sm btn-secondary mt-2" id="rotateAircraftCarrier">Vertical</a>
-                        <a class="btn btn-sm btn-secondary mt-2"><i class="fa-4 fa-repeat"></i></a>
+                        <a class="btn btn-sm btn-secondary mt-2" id="eraseAircraftCarrier"><i class="fa-4 fa-repeat"></i></a>
                     </div>
                 </div>
 
@@ -74,7 +74,7 @@
                     <div class="place">
                         <a class="btn btn-sm btn-dark mt-2" id="battleship" data-horizontal="true">Horizontal</a>
                         <a class="btn btn-sm btn-secondary mt-2" id="rotateBattleship">Vertical</a>
-                        <a class="btn btn-sm btn-secondary mt-2"><i class="fa-4 fa-repeat"></i></a>
+                        <a class="btn btn-sm btn-secondary mt-2" id="eraseBattleship"><i class="fa-4 fa-repeat"></i></a>
                     </div>  
                 </div>
 
@@ -85,7 +85,7 @@
                     <div class="place">
                         <a class="btn btn-sm btn-dark mt-2" id="cruiser" data-horizontal="true">Horizontal</a>
                         <a class="btn btn-sm btn-secondary mt-2" id="rotateCruiser">Vertical</a>
-                        <a class="btn btn-sm btn-secondary mt-2"><i class="fa-4 fa-repeat"></i></a>
+                        <a class="btn btn-sm btn-secondary mt-2" id="eraseCruiser"><i class="fa-4 fa-repeat"></i></a>
                     </div>
                 </div>
 
@@ -96,7 +96,7 @@
                     <div class="place">
                         <a class="btn btn-sm btn-dark mt-2" id="submarine" data-horizontal="true">Horizontal</a>
                         <a class="btn btn-sm btn-secondary mt-2" id="rotateSubmarine">Vertical</i></a>
-                        <a class="btn btn-sm btn-secondary mt-2"><i class="fa-4 fa-repeat"></i></a>
+                        <a class="btn btn-sm btn-secondary mt-2" id="eraseSubmarine"><i class="fa-4 fa-repeat"></i></a>
                     </div>
                 </div>
 
@@ -107,7 +107,7 @@
                     <div class="place">
                         <a class="btn btn-sm btn-dark mt-2" id="destroyer" data-horizontal="true">Horizontal</a>
                         <a class="btn btn-sm btn-secondary mt-2" id="rotateDestroyer">Vertical</a>
-                        <a class="btn btn-sm btn-secondary mt-2"><i class="fa-4 fa-repeat"></i></a>
+                        <a class="btn btn-sm btn-secondary mt-2" id="eraseDestroyer"><i class="fa-4 fa-repeat"></i></a>
                     </div>
                 </div>
 
@@ -269,7 +269,7 @@
             </div>
 
             <div class="yourShips">
-                <h2>Your Ships</h2>
+                <h2>Opponent Ships</h2>
                 <div id="yourCount">
                     <div id="yourNumbers">
                         <div>1</div>
@@ -423,7 +423,7 @@
             </div>
 
             <div class="yourVessels">
-                <h2 class="text-center">Your Vessels</h2>
+                <h2 class="text-center">Opponent Vessels</h2>
                 <div class="sink-div">
                     <div class="sink-svg">
                         <img src="./your-ships/yourAircraftCarrier.svg" height="20" alt="Your Aircraft Carrier">
