@@ -469,10 +469,37 @@ sinkShips("sinkSubmarine", "./your-ships/yourSubmarine.svg", "./your-ships/yourS
 sinkShips("sinkDestroyer", "./your-ships/yourDestroyer.svg", "./your-ships/yourDestroyerSunk.svg");
 
 
+
+//   ADDITIONAL FUNCTIONALITY
+//-----------------------------------------------------------------
+
+
+// Close Modal Click
+function closeModalClick(btnId){
+    document.getElementById(btnId).addEventListener("click", function(event) {
+        document.getElementById('modal').style.display='none';
+    }, { once: true });
+}
+closeModalClick("closeModal1");
+closeModalClick("closeModal2");
+
+
+// Close Modal Focus
+function closeModalFocus(btnId){
+    document.getElementById(btnId).addEventListener('keydown', (event) => {
+        if (event.key == "Enter") {
+            document.getElementById('modal').style.display='none';
+        }
+    }, { once: true });
+}
+closeModalFocus("closeModal1");
+closeModalFocus("closeModal2");
+
+
 // Slider Value
 const slider = document.getElementById("slider");
 const output = document.getElementById("output");
 output.innerHTML = "0"; 
 slider.oninput = function() {
-  output.innerHTML = this.value;
+    output.innerHTML = this.value;
 }
