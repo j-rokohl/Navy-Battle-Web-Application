@@ -1,6 +1,6 @@
 # Navy Battle Web Application
 
-## This is a Battleship clone game.
+## Play offline Battleship with a friend
 
 
 ### Description
