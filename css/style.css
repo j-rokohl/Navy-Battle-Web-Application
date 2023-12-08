@@ -361,6 +361,24 @@
             top: 0;
         }
 
+/* Popovers */
+
+        .info-popover {
+            padding: 0; 
+            outline: none !important;
+            border: none !important;
+        }
+        .info-popover:focus {
+            padding: 0; 
+            outline: none !important;
+            border: none !important;
+        }
+        .info-popover:active {
+            padding: 0; 
+            outline: none !important;
+            border: none !important;
+        }
+
 /* Instructions Page */
 
         .rules {
