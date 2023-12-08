@@ -11,6 +11,7 @@
         }
         h1 {
             font-size: 5em;
+            margin-bottom: 0;
         }
         h2 {
             font-size: 1.2em;
@@ -25,6 +26,8 @@
         .div-1250 {
             width: 1250px; 
             margin: auto;
+            margin-bottom: 3em;
+            overflow: hidden;
         }
 
 /* Font Awesome */
@@ -257,6 +260,13 @@
 
         .sink-div {
             margin-top: 20px;
+        }
+
+        .labels {
+            text-transform: uppercase; 
+            margin-bottom: 0; 
+            font-size: .6em;
+            text-shadow: 0 0 5px #ffffff, 0 0 5px #d8eef2, 0 0 5px #d8eef2;
         }
 
 /* Modal */
