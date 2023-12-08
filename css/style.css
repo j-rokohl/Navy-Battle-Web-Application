@@ -29,6 +29,9 @@
             margin-bottom: 3em;
             overflow: hidden;
         }
+        .main-img {
+            width: 450px;
+        }
 
 /* Font Awesome */
 
@@ -66,7 +69,7 @@
 
 /* Drop-Down Menu */ 
         .menu-right{
-            width: 320px; 
+            width: 360px; 
             float: right;
         }
 
@@ -106,7 +109,7 @@
         }
         #restart {
             float: left; 
-            margin: 10px 170px 10px 0;
+            margin: 10px 160px 10px 0;
             font-weight: 900;
             font-size: .85em;
         }
@@ -170,6 +173,9 @@
             font-weight: 600;
             background-color: #273f5c;
             text-align: center;
+        }
+        .grid-curve {
+            border-top-left-radius: 10px;
         }
 
 /* Image Sprites */
