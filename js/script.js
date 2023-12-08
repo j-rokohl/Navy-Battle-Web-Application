@@ -238,8 +238,14 @@ function horizontalHighlightListener(eventType, shipLength, highlightColor) {
                 break;
                 }
 
-            if (firstRowIndex != 9){ //Rows 1 - 8
-            let lastRowIndex = myGrid[lastBox - 1].dataset.rowindex;
+            if (getIndex == 0){ // Prevent error from if statement below
+                highlightBoxRange();
+                defaultCursor();
+            }
+
+            else if (firstRowIndex != 9){ //Rows 1 - 8
+            let lastRowIndex = myGrid[lastBox-1].dataset.rowindex;
+            console.log(myGrid[lastBox]);
                 if (firstRowIndex != lastRowIndex){
                     noCursor();
                 }
