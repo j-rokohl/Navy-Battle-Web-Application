@@ -237,7 +237,7 @@ function horizontalHighlightListener(eventType, shipLength, highlightColor) {
                     defaultCursor();
                 break;
                 }
-            
+
             if (firstRowIndex != 9){ //Rows 1 - 8
             let lastRowIndex = myGrid[lastBox - 1].dataset.rowindex;
                 if (firstRowIndex != lastRowIndex){
@@ -372,7 +372,7 @@ function dropImageVertical(shipObject, shipLength){
                 newArr[i].dataset.occupied = "true";
                 newArr[i].dataset.ship = shipString;
                 newArr[i].style.background = shipObject.imgSliceArrayVert[arrayStart];
-                newArr[i].dataset.slice = String(shipObject.imgSliceArrayHoriz[arrayStart]);
+                newArr[i].dataset.slice = String(shipObject.imgSliceArrayVert[arrayStart]);
                 arrayStart = arrayStart + 1;
                 i = i+10;
                 }
