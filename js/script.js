@@ -53,7 +53,7 @@ class Box {
         this.index = index;
         this.rowIndex = +String(this.index).padStart(2, '0').slice(0, 1);
         this.columnIndex = +String(this.index).slice(-1);
-        this.occupied = occupied
+        this.occupied = "false";
     }
 }
 
@@ -66,11 +66,12 @@ function setGrid(){
     let i = 0;
     myGrid.forEach(function () {
         newBox = new Box(i);
+        myGrid[i].setAttribute("data-occupied", newBox.occupied);
         myGrid[i].setAttribute("data-index", newBox.index);
         myGrid[i].setAttribute("data-rowindex", newBox.rowIndex);
         myGrid[i].setAttribute("data-columnindex", newBox.columnIndex);
         myGrid[i].setAttribute("data-ship", "none");
-        myGrid[i].setAttribute("data-occupied", newBox.occupied);
+        myGrid[i].setAttribute("data-slice", "none");
         myBoxArray.push(newBox);
         i++;
     });
@@ -338,8 +339,10 @@ function dropImageHorizontal(shipObject, shipLength){
                     let shipString = String(shipObject.name);
                     testArr.push(shipString);
                     newArr[i].setAttribute("class", "box horizontal");
+                    newArr[i].dataset.occupied = "true";
                     newArr[i].dataset.ship = shipString;
                     newArr[i].style.background = shipObject.imgSliceArrayHoriz[arrayStart2];
+                    newArr[i].dataset.slice = String(shipObject.imgSliceArrayHoriz[arrayStart2]);
                     arrayStart2 = arrayStart2 +1;
                     i++;
                     }
@@ -366,8 +369,10 @@ function dropImageVertical(shipObject, shipLength){
             const newArr = document.querySelectorAll("#myShips div div");
             do{
                 newArr[i].setAttribute("class", "box vertical");
+                newArr[i].dataset.occupied = "true";
                 newArr[i].dataset.ship = shipString;
                 newArr[i].style.background = shipObject.imgSliceArrayVert[arrayStart];
+                newArr[i].dataset.slice = String(shipObject.imgSliceArrayHoriz[arrayStart]);
                 arrayStart = arrayStart + 1;
                 i = i+10;
                 }
@@ -422,12 +427,38 @@ function playTheGame(btnId){
         sinkShips("sinkMyCruiser", "./cruiser.svg", "./my-ships/myCruiserSunk.svg");
         sinkShips("sinkMySubmarine", "./submarine.svg", "./my-ships/mySubmarineSunk.svg");
         sinkShips("sinkMyDestroyer", "./destroyer.svg", "./my-ships/myDestroyerSunk.svg");
+        // Make Grid Functional
+        myPegs();
     })
 }
 playTheGame("ready");
 
 
-// 9. Reset the Game
+// 10. My Ships: (Unoccupied: 'Splash', 'Erase') || (Occupied: 'Explose', 'Img')
+
+function myPegs(){
+    myGrid.forEach(function (event) {
+        let slice = event.getAttribute("data-slice");
+        let Opegs = ["url('./pegs/splash.png')", "url('./pegs/clear.png')"];
+        let Upegs = ["url('./pegs/explosion.png')" , slice];
+        event.addEventListener("click", function () {
+            const occupied = event.getAttribute("data-occupied");
+            if (occupied == "false") {
+                let peg = Opegs.shift();
+                Opegs.push(peg);
+                event.style.backgroundImage = peg;
+            }
+            else if (occupied == "true") {
+                let peg = Upegs.shift();
+                Upegs.push(peg);
+                event.style.background = peg;
+            }
+        })
+    });
+}
+
+
+// 11. Reset the Game
 
 function resetMyShipGrid(btnId){
     document.getElementById(btnId).addEventListener("click", function(event) {
@@ -450,7 +481,7 @@ const yourGrid = document.querySelectorAll("#yourShips div div");
 yourGrid.forEach(function (event) {
     const pegs = ["url('./pegs/splash.png')", "url('./pegs/explosion.png')", "url('./pegs/clear.png')"];
     event.addEventListener("click", function () {
-        peg = pegs.shift();
+        let peg = pegs.shift();
         pegs.push(peg);
         event.style.backgroundImage = peg;
     });
@@ -530,4 +561,3 @@ output.innerHTML = "0";
 slider.oninput = function() {
     output.innerHTML = this.value;
 }
-
