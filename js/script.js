@@ -400,8 +400,34 @@ eraseShip(submarine , "eraseSubmarine");
 eraseShip(destroyer, "eraseDestroyer");
 
 
+// 8. Play the Game
 
-// 8. Reset the Game
+function playTheGame(btnId){
+    document.getElementById(btnId).addEventListener("click", function(event) {
+        document.getElementById("wrapper").innerHTML= `<h2 class="text-center">My Vessels</h2>
+        <div class=sink-div><div class=sink-svg><img alt="My Aircraft Carrier"height=20 src=./aircraftCarrier.svg>
+        </div><div class=sink><a class="btn btn-secondary btn-sm mt-2"data-horizontal=false id=sinkMyAircraftCarrier>Sunk</a>
+        </div></div><div class=sink-div><div class=sink-svg><img alt="My Battleship"height=20 src=./battleship.svg></div>
+        <div class=sink><a class="btn btn-secondary btn-sm mt-2"data-horizontal=false id=sinkMyBattleship>Sunk</a></div></div>
+        <div class=sink-div><div class=sink-svg><img alt="My Cruiser"height=20 src=./cruiser.svg></div><div class=sink>
+        <a class="btn btn-secondary btn-sm mt-2"data-horizontal=false id=sinkMyCruiser>Sunk</a></div></div><div class=sink-div>
+        <div class=sink-svg><img alt="My Submarine"height=20 src=./submarine.svg></div><div class=sink>
+        <a class="btn btn-secondary btn-sm mt-2"data-horizontal=false id=sinkMySubmarine>Sunk</a></div></div><div class=sink-div>
+        <div class=sink-svg><img alt="My Destroyer"height=20 src=./destroyer.svg></div><div class=sink>
+        <a class="btn btn-secondary btn-sm mt-2"data-horizontal=false id=sinkMyDestroyer>Sunk</a></div></div>
+        `;
+        // My Ships
+        sinkShips("sinkMyAircraftCarrier", "./aircraftCarrier.svg", "./my-ships/myAircraftCarrierSunk.svg");
+        sinkShips("sinkMyBattleship", "./battleship.svg", "./my-ships/myBattleshipSunk.svg");
+        sinkShips("sinkMyCruiser", "./cruiser.svg", "./my-ships/myCruiserSunk.svg");
+        sinkShips("sinkMySubmarine", "./submarine.svg", "./my-ships/mySubmarineSunk.svg");
+        sinkShips("sinkMyDestroyer", "./destroyer.svg", "./my-ships/myDestroyerSunk.svg");
+    })
+}
+playTheGame("ready");
+
+
+// 9. Reset the Game
 
 function resetMyShipGrid(btnId){
     document.getElementById(btnId).addEventListener("click", function(event) {
@@ -462,6 +488,7 @@ function sinkShips(btnId, img, imgReplace){
             sinkId.innerHTML = "Sunk";
         }
 })}
+// Your Ships
 sinkShips("sinkAircraftCarrier", "./your-ships/yourAircraftCarrier.svg", "./your-ships/yourAircraftCarrierSunk.svg");
 sinkShips("sinkBattleship", "./your-ships/yourBattleship.svg", "./your-ships/yourBattleshipSunk.svg");
 sinkShips("sinkCruiser", "./your-ships/yourCruiser.svg", "./your-ships/yourCruiserSunk.svg");
@@ -503,3 +530,4 @@ output.innerHTML = "0";
 slider.oninput = function() {
     output.innerHTML = this.value;
 }
+
