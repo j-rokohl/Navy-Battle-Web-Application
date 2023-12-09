@@ -330,19 +330,20 @@ function dropImageHorizontal(shipObject, shipLength){
             let getIndex = +event.target.dataset.index;
             const lastB = +getIndex + (shipLength - 1);
             const firstRowIndex = myGrid[getIndex].dataset.rowindex;
-            const lastRowIndex = myGrid[lastB - 1].dataset.rowindex;
+            const lastRowIndex = myGrid[lastB].dataset.rowindex;
             const shipLast = shipLength - 1;
             const newArr = document.querySelectorAll("#myShips div div"); // Identity function
             const readArr = [];
 
             // Exit if already placed
             if (shipObject.once == 0){
-                // Exit
+                return;
             }
 
             // Exit if image will be segmented into two rows
             else if (firstRowIndex != lastRowIndex) {
-                // Exit
+                alert ("This ship goes off the board. Please try another spot.")
+                return;
             }
 
             // Read the Spot
@@ -386,17 +387,24 @@ function dropImageVertical(shipObject, shipLength){
     myShipId.addEventListener("click", function(event) {
         let shipString = String(shipObject.name);
         let getIndex = +event.target.dataset.index;
+        const shipLengthTen = (shipLength - 1) * 10;
         const newArr = document.querySelectorAll("#myShips div div");
         const readArr = [];
 
         // Exit if already placed
         if (shipObject.once == 0){
-            // Exit 
+            return;
         }
 
-        // Exit if the box is not the light-blue section
+        // Exit if the box is on the letters
         else if (!event.target.classList.contains('box')) {
-            // Exit
+            return;
+        }
+
+        // Exit if the image will go off the board
+        else if (+getIndex + shipLengthTen > 99) {
+            alert ("This ship goes off the board. Please try another spot.")
+            return;
         }
 
         // Read the Spot
