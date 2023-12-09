@@ -104,6 +104,7 @@
         #restart {
             text-transform: uppercase;
             float: left; 
+            vertical-align: middle;
             margin: 10px 160px 10px 0;
             box-shadow: 0px 3px 0px -1px #273f5c;
             background:linear-gradient(to bottom, #273f5c 5%, #05499B 100%);
@@ -115,13 +116,14 @@
             font-family:Arial;
             font-size:12px;
             font-weight:bold;
-            padding:6px 16px;
+            padding: 8px 16px 5px 16px;
             text-decoration:none;
             text-shadow:0px 0px 0px #283966;
         }
         #ready {
             text-transform: uppercase;
             float: left; 
+            vertical-align: middle;
             margin: 10px;
             box-shadow: 0px 3px 0px -1px #273f5c;
             background:linear-gradient(to bottom, #273f5c 5%, #05499B 100%);
@@ -133,7 +135,7 @@
             font-family:Arial;
             font-size:12px;
             font-weight:bold;
-            padding:6px 16px;
+            padding: 8px 16px 5px 16px;
             text-decoration:none;
             text-shadow:0px 0px 0px #283966;
         }
@@ -227,6 +229,7 @@
         .btn {
             border-radius: 20px !important;
             padding: 5px 10px;
+            cursor: inherit !important;
         }
         .btn-div {
             margin-top: 20px;
