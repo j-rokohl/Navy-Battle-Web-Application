@@ -390,6 +390,8 @@
             font-size: 1.25em;
         }
 
+/* Larger Screen Sizes */
+
         @media screen and (min-width: 1600px) {
            .container-fluid {
             transform: scale(1.2);
@@ -410,3 +412,38 @@
                 margin-bottom: 2em !important;
             }
           }
+
+/* Smaller Screen Sizes */
+
+@media screen and (max-width: 971px) {
+    .div-1250 {
+        width: 700px;
+    }
+    h2 {
+        margin-top: 3em;
+    }
+    body { 
+        background-image: url(../water-mobile.jpg);
+        background-size: 100%;
+        background-color: #d8eef2;
+    }
+    .menu-right {
+        width: 100%;
+    }
+    .menu-right .btn-group {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .div-1250 {
+        width: 400px;
+    }
+    h2 {
+        margin-top: 2em;
+    }
+    .main-img{ 
+        width: 250px;
+        margin: 0;
+    }
+}

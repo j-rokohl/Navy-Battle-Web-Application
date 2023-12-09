@@ -412,8 +412,9 @@ function dropImageVertical(shipObject, shipLength){
         for (let arrRead = 0; arrRead <= shipLength - 1; arrRead++){
             let read = newArr[x].getAttribute("data-occupied");
             readArr.push(read);
-            x+10;
+            x=x+10;
         }
+        console.log(readArr);
 
         // Exit if Occupied
         for (let y = 0; y <= readArr.length; y++) {
