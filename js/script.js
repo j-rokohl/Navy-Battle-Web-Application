@@ -332,30 +332,51 @@ function dropImageHorizontal(shipObject, shipLength){
             const firstRowIndex = myGrid[getIndex].dataset.rowindex;
             const lastRowIndex = myGrid[lastB - 1].dataset.rowindex;
             const shipLast = shipLength - 1;
+            const newArr = document.querySelectorAll("#myShips div div"); // Identity function
+            const readArr = [];
+
+            // Exit if already placed
             if (shipObject.once == 0){
                 // Exit
             }
-            else if (firstRowIndex == lastRowIndex) {
-                const newArr = document.querySelectorAll("#myShips div div"); // Identity function
-                let arrayStart2 = 0;
-                let i = +getIndex;
-                let testArr = [];
-                do{
+
+            // Exit if image will be segmented into two rows
+            else if (firstRowIndex != lastRowIndex) {
+                // Exit
+            }
+
+            // Read the Spot
+            let x = +getIndex;
+            for (let arrRead = 0; arrRead <= shipLast; arrRead++){
+                let read = newArr[x].getAttribute("data-occupied");
+                readArr.push(read);
+                x++;
+            }
+
+            // Exit if Occupied
+            for (let y = 0; y <= readArr.length; y++) {
+                if (readArr[y] == "true"){
+                    alert ("You cannot place ships over other ships. Please try another spot.")
+                    return;
+                }
+            }
+
+            // Fill the Spot if Unoccupied
+            let i = +getIndex;
+            for (let arrStart = 0; arrStart <= shipLast; arrStart++){
                     let shipString = String(shipObject.name);
-                    testArr.push(shipString);
                     newArr[i].setAttribute("class", "box horizontal");
                     newArr[i].dataset.occupied = "true";
                     newArr[i].dataset.ship = shipString;
-                    newArr[i].style.background = shipObject.imgSliceArrayHoriz[arrayStart2];
-                    newArr[i].dataset.slice = String(shipObject.imgSliceArrayHoriz[arrayStart2]);
-                    arrayStart2 = arrayStart2 +1;
+                    newArr[i].style.background = shipObject.imgSliceArrayHoriz[arrStart];
+                    newArr[i].dataset.slice = String(shipObject.imgSliceArrayHoriz[arrStart]);
                     i++;
-                    }
-                while (arrayStart2 <= shipLast);
-                shipObject.once = 0;
             }
-        }
-    }, { once: true });
+            
+            // Mark the ship as placed
+            shipObject.once = 0;
+            }
+    }, { once: true }); // Once: true prevents the listener from continuing, which leads to bugs
 }
 
 
@@ -363,28 +384,52 @@ function dropImageHorizontal(shipObject, shipLength){
 
 function dropImageVertical(shipObject, shipLength){
     myShipId.addEventListener("click", function(event) {
+        let shipString = String(shipObject.name);
+        let getIndex = +event.target.dataset.index;
+        const newArr = document.querySelectorAll("#myShips div div");
+        const readArr = [];
+
+        // Exit if already placed
         if (shipObject.once == 0){
+            // Exit 
+        }
+
+        // Exit if the box is not the light-blue section
+        else if (!event.target.classList.contains('box')) {
             // Exit
         }
-        else if (event.target.classList.contains('box')) {
-            let shipString = String(shipObject.name);
-            let getIndex = +event.target.dataset.index;
-            let arrayStart = 0;
-            let i = +getIndex;
-            const newArr = document.querySelectorAll("#myShips div div");
-            do{
-                newArr[i].setAttribute("class", "box vertical");
-                newArr[i].dataset.occupied = "true";
-                newArr[i].dataset.ship = shipString;
-                newArr[i].style.background = shipObject.imgSliceArrayVert[arrayStart];
-                newArr[i].dataset.slice = String(shipObject.imgSliceArrayVert[arrayStart]);
-                arrayStart = arrayStart + 1;
-                i = i+10;
-                }
-            while (arrayStart <= shipLength - 1);
-            shipObject.once = 0;
+
+        // Read the Spot
+        let x = +getIndex;
+        for (let arrRead = 0; arrRead <= shipLength - 1; arrRead++){
+            let read = newArr[x].getAttribute("data-occupied");
+            readArr.push(read);
+            x+10;
         }
-    }, { once: true });
+
+        // Exit if Occupied
+        for (let y = 0; y <= readArr.length; y++) {
+            if (readArr[y] == "true"){
+                alert ("You cannot place ships over other ships. Please try another spot.")
+                return;
+            }
+        }
+
+        // Fill the Spot if Unoccupied
+        let i = +getIndex;
+        for (let arrayStart = 0; arrayStart <= shipLength - 1; arrayStart++){
+            newArr[i].setAttribute("class", "box vertical");
+            newArr[i].dataset.occupied = "true";
+            newArr[i].dataset.ship = shipString;
+            newArr[i].style.background = shipObject.imgSliceArrayVert[arrayStart];
+            newArr[i].dataset.slice = String(shipObject.imgSliceArrayVert[arrayStart]);
+            i = i+10;
+        }
+            
+        // Mark the ship as placed
+        shipObject.once = 0;
+
+    }, { once: true }); // Once: true prevents the listener from continuing, which leads to bugs
 }
 
 // 7. Erase an Individual Ship 
