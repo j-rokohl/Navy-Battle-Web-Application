@@ -451,6 +451,7 @@ function eraseShip(shipObject, buttonName){
             if (newArr[i].dataset.ship == shipString) {
                 newArr[i].setAttribute("class", "box");
                 newArr[i].dataset.ship = "none";
+                newArr[i].dataset.occupied = "false";
                 newArr[i].style.background = "";
             }
         }
