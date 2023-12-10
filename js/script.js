@@ -106,7 +106,6 @@ buttonListener("rotateDestroyer", "destroyer");
 
 // 2. Set Horizontal Attribute to true or false
 
-let rotateButton = "";
 function boolButtonListener(btn){
 
     const element = document.getElementById(btn);
@@ -299,7 +298,7 @@ myShipId.addEventListener(eventType, function (event) {
                defaultCursor();
             }
         }
-});
+    });
 }
 
 
@@ -465,7 +464,7 @@ eraseShip(submarine , "eraseSubmarine");
 eraseShip(destroyer, "eraseDestroyer");
 
 
-// 8. Play the Game
+// 8. Play the Game: Replaces le left column, and sets the My Ships board to use Pegs
 
 function playTheGame(btnId){
     document.getElementById(btnId).addEventListener("click", function(event) {
@@ -491,7 +490,7 @@ function playTheGame(btnId){
         sinkShips("sinkMyDestroyer", "./destroyer.svg", "./my-ships/myDestroyerSunk.svg");
         // Make Grid Functional
         myPegs();
-    })
+    },{once: true}); // Once: true prevents the listener from continuing
 }
 playTheGame("ready");
 
