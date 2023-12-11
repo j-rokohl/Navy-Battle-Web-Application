@@ -367,10 +367,16 @@ i {
 
 
 /* Instructions Page */
+.instruction {
+    text-transform: uppercase;
+    font-weight: 900;
+    font-size: 1.6em;
+    margin-top: 0 !important;
+}
 .rules {
     text-transform: uppercase;
     font-weight: 900;
-    font-size: 1.25em;
+    font-size: 1em;
 }
 
 
