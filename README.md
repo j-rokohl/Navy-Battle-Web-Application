@@ -7,6 +7,8 @@
 
 The Navy Battle Web Application provides a desktop interface to play the classic board game “Battleship”. This web app is for in person play or play on Zoom and does not include an option to play the computer. Each user can use their own computer to play. This is a great game to play offline with a friend or family member, while on an airplane or without internet access. 
 
+![Navy Battle Screenshot](https://navybattle.netlify.app/screenshots/desktop.png)
+
 
 ### Download & Play Offline
 
