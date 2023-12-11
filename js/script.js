@@ -112,15 +112,12 @@ function boolButtonListener(btn){
     const parent = element.parentElement.parentElement;
     const placeElement = parent.getElementsByClassName("place");
     const placeButton = placeElement[0].getElementsByClassName("btn-dark");
-    //console.log(element.innerHTML);
     if  (element.innerHTML == "Vertical"){
         placeButton[0].dataset.horizontal = "false";  
     }
     else if (element.innerHTML == "Horizontal") {
         placeButton[0].dataset.horizontal = "true";  
     }
-    //console.log(placeButton[0].dataset.horizontal);
-
 }
 
 
@@ -413,7 +410,6 @@ function dropImageVertical(shipObject, shipLength){
             readArr.push(read);
             x=x+10;
         }
-        console.log(readArr);
 
         // Exit if Occupied
         for (let y = 0; y <= readArr.length; y++) {
